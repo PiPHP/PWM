@@ -1,7 +1,7 @@
 {
-    "name": "piphp/gpio",
-    "description": "A library for accessing the GPIO pins on a Raspberry Pi",
-    "keywords": ["gpio", "pi", "raspberry", "pin", "pins"],
+    "name": "piphp/pwm",
+    "description": "A library for accessing the PWM pins on a Raspberry Pi",
+    "keywords": ["pwm", "pi", "raspberry", "pin", "pins"],
     "license": "MIT",
     "authors": [
         {
@@ -11,12 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "PiPHP\\GPIO\\": "src/"
+            "PiPHP\\PWM\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PiPHP\\Test\\GPIO\\": "test/"
+            "PiPHP\\Test\\PWM\\": "test/"
         }
     }
 }

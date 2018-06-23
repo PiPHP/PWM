@@ -1,8 +1,8 @@
 <?php
 
-namespace PiPHP\Test\GPIO\FileSystem;
+namespace PiPHP\Test\PWM\FileSystem;
 
-use PiPHP\GPIO\FileSystem\FileSystemInterface;
+use PiPHP\PWM\FileSystem\FileSystemInterface;
 
 class VFS implements FileSystemInterface
 {

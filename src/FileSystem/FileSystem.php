@@ -1,6 +1,6 @@
 <?php
 
-namespace PiPHP\GPIO\FileSystem;
+namespace PiPHP\PWM\FileSystem;
 
 final class FileSystem implements FileSystemInterface
 {

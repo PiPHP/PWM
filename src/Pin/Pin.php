@@ -1,26 +1,23 @@
 <?php
 
-namespace PiPHP\GPIO\Pin;
+namespace PiPHP\PWM\Pin;
 
-use PiPHP\GPIO\FileSystem\FileSystemInterface;
+use PiPHP\PWM\FileSystem\FileSystemInterface;
 
-abstract class Pin implements PinInterface
+final class Pin implements PinInterface
 {
     // Paths
-    const GPIO_PATH = '/sys/class/gpio/';
-    const GPIO_PREFIX = 'gpio';
+    const PWM_PATH = '/sys/class/pwm/';
+    const PWM_PREFIX = 'pwmchip';
 
     // Files
-    const GPIO_FILE_EXPORT = 'export';
-    const GPIO_FILE_UNEXPORT = 'unexport';
+    const PWM_FILE_EXPORT = 'export';
+    const PWM_FILE_UNEXPORT = 'unexport';
 
     // Pin files
-    const GPIO_PIN_FILE_DIRECTION = 'direction';
-    const GPIO_PIN_FILE_VALUE = 'value';
-
-    // Directions
-    const DIRECTION_IN = 'in';
-    const DIRECTION_OUT = 'out';
+    const PWM_PIN_FILE_DUTY_CYCLE = 'duty_cycle';
+    const PWM_PIN_FILE_ENABLE = 'enable';
+    const PWM_PIN_FILE_PERIOD = 'period';
 
     protected $fileSystem;
     protected $number;
@@ -52,7 +49,7 @@ abstract class Pin implements PinInterface
      */
     public function export()
     {
-        $this->writePinNumberToFile($this->getFile(self::GPIO_FILE_EXPORT));
+        $this->writePinNumberToFile($this->getFile(self::PWM_FILE_EXPORT));
     }
 
     /**
@@ -60,25 +57,7 @@ abstract class Pin implements PinInterface
      */
     public function unexport()
     {
-        $this->writePinNumberToFile($this->getFile(self::GPIO_FILE_UNEXPORT));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setDirection($direction)
-    {
-        $directionFile = $this->getPinFile(self::GPIO_PIN_FILE_DIRECTION);
-        $this->fileSystem->putContents($directionFile, $direction);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getValue()
-    {
-        $valueFile = $this->getPinFile(self::GPIO_PIN_FILE_VALUE);
-        return (int) $this->fileSystem->getContents($valueFile);
+        $this->writePinNumberToFile($this->getFile(self::PWM_FILE_UNEXPORT));
     }
 
     /**
@@ -90,19 +69,19 @@ abstract class Pin implements PinInterface
      */
     private function getFile($file)
     {
-        return self::GPIO_PATH . $file;
+        return self::PWM_PATH . $file;
     }
 
     /**
      * Get the path of a pin access file.
      * 
-     * @param string $file The type of pin file (edge/value/direction)
+     * @param string $file The type of pin file (duty_cycle/enable/period)
      * 
      * @return string
      */
     protected function getPinFile($file)
     {
-        return self::GPIO_PATH . self::GPIO_PREFIX . $this->getNumber() . '/' . $file;
+        return self::PWM_PATH . self::PWM_PREFIX . $this->getNumber() . '/' . $file;
     }
 
     /**

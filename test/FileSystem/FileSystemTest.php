@@ -1,8 +1,8 @@
 <?php
 
-namespace PiPHP\Test\GPIO\FileSystem;
+namespace PiPHP\Test\PWM\FileSystem;
 
-use PiPHP\GPIO\FileSystem\FileSystem;
+use PiPHP\PWM\FileSystem\FileSystem;
 
 class FileSystemTest extends \PHPUnit_Framework_TestCase
 {

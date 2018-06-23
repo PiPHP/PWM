@@ -1,6 +1,6 @@
 <?php
 
-namespace PiPHP\GPIO\Pin;
+namespace PiPHP\PWM\Pin;
 
 interface PinInterface
 {
@@ -23,11 +23,4 @@ interface PinInterface
      * Unexport the pin.
      */
     public function unexport();
-
-    /**
-     * Get the pin value.
-     * 
-     * @return int
-     */
-    public function getValue();
 }
